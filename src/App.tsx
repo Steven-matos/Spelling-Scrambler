@@ -25,13 +25,13 @@ function App() {
 
   return (
     <Authenticator
+      loginMechanisms={["username"]}
       initialState="signUp"
-      socialProviders={["google"]}
       variation="modal"
     >
       {({ signOut, user }) => (
         <main>
-          <h1>{user?.signInDetails?.loginId}'s todos</h1>
+          <h1>{user?.username}'s todos</h1>
           <button onClick={createTodo}>+ new</button>
           <ul>
             {todos.map((todo) => (
