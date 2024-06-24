@@ -25,7 +25,7 @@ function App() {
 
   return (
     <Authenticator
-      loginMechanisms={["username"]}
+      signUpAttributes={["preferred_username"]}
       initialState="signUp"
       variation="modal"
     >
