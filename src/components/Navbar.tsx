@@ -1,14 +1,23 @@
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import logo from "../image/shiba_upscayl.png";
 
 const navigation = [
-  { name: "About", href: "about" },
-  { name: "Contact Us", href: "contact-us" },
+  { name: "About", path: "/about" },
+  { name: "Contact Us", path: "/contact-us" },
 ];
 
-const Navbar = () => {
+// Define the NavbarProps interface
+interface NavbarProps {
+  onLogin?: boolean;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  console.log("onLogin", onLogin);
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
@@ -17,14 +26,14 @@ const Navbar = () => {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <Link to={"/"} className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
+              className="h-8 w-8 rounded-full"
+              src={logo}
+              alt="Shiba with floating letters"
             />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -38,22 +47,23 @@ const Navbar = () => {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
-            <a
+            <Link
               key={item.name}
-              href={item.href}
+              to={item.path}
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="dashboard"
+          <Link
+            to={"/dashboard"}
             className="text-sm font-semibold leading-6 text-gray-900"
+            style={{ display: onLogin ? "none" : "block" }}
           >
             Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          </Link>
         </div>
       </nav>
       <Dialog
@@ -64,14 +74,14 @@ const Navbar = () => {
         <div className="fixed inset-0 z-50" />
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link to={"/"} className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt=""
               />
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -85,22 +95,25 @@ const Navbar = () => {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.path}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
-              <div className="py-6">
-                <a
-                  href="/dashboard"
+              <div
+                className="py-6"
+                style={{ display: onLogin ? "none" : "block" }}
+              >
+                <Link
+                  to={"/dashboard"}
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log in
-                </a>
+                </Link>
               </div>
             </div>
           </div>

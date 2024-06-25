@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Contact from "./routes/Contact.tsx";
 import About from "./routes/About.tsx";
 import Dashboard from "./routes/Dashboard.tsx";
+import NotFound from "./routes/NotFound.tsx";
 
 Amplify.configure(outputs);
 
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <NotFound />,
   },
   {
     path: "/contact-us",

@@ -8,22 +8,23 @@
   --amplify-components-authenticator-router-border-width: 0;
   --amplify-components-authenticator-form-padding: var(--amplify-space-medium)
     var(--amplify-space-xl) var(--amplify-space-xl);
-  --amplify-components-fieldcontrol-focus-box-shadow: 0 0 0 2px
-    var(--amplify-colors-purple-60);
   --amplify-components-tabs-item-active-border-color: var(
     --amplify-colors-neutral-100
   );
-  --amplify-components-tabs-item-color: var(--amplify-colors-purple-40);
-  --amplify-components-tabs-item-active-color: var(
-    --amplify-colors-neutral-100
-  );
+  --amplify-components-tabs-item-color: var(--amplify-colors-neutral-80);
+  --amplify-components-tabs-item-active-color: var(--amplify-colors-neutral-50);
   --amplify-components-button-link-color: var(--amplify-colors-neutral-80);
 }
 
 .amplify-button--primary {
-  background: linear-gradient(
-    to right,
-    var(--amplify-colors-pink-20),
-    var(--amplify-colors-purple-40)
-  );
+  background: #8ee3ec;
+  color: black;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e5f8fa; /* Change to your desired color */
 }

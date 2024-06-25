@@ -7,6 +7,7 @@ import {
   Button,
   useAuthenticator,
 } from "@aws-amplify/ui-react";
+import Navbar from "../components/Navbar";
 
 const components = {
   Header() {
@@ -205,14 +206,21 @@ const formFields = {
 
 const Dashboard = () => {
   return (
-    <Authenticator formFields={formFields} components={components}>
-      {({ signOut, user }) => (
-        <main>
-          <h1>Hello {user?.username}</h1>
-          <button onClick={signOut}>Sign out</button>
-        </main>
-      )}
-    </Authenticator>
+    <>
+      <Navbar onLogin={true} />
+      <Authenticator
+        formFields={formFields}
+        components={components}
+        className="auth-container"
+      >
+        {({ signOut, user }) => (
+          <main>
+            <h1>Hello {user?.username}</h1>
+            <button onClick={signOut}>Sign out</button>
+          </main>
+        )}
+      </Authenticator>
+    </>
   );
 };
 
