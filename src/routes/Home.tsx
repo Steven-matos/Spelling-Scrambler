@@ -1,29 +1,7 @@
-import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-import "@aws-amplify/ui-react/styles.css";
-import Navbar from "./components/Navbar";
-import logo from "./image/shiba_upscayl.png";
+import Navbar from "../components/Navbar";
+import logo from "../image/shiba_upscayl.png";
 
-const client = generateClient<Schema>();
-
-function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
-
-  function deleteTodo(id: string) {
-    client.models.Todo.delete({ id });
-  }
-
+function Home() {
   return (
     <div className="bg-dffdff">
       <Navbar />
@@ -74,4 +52,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

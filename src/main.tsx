@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
 import { Amplify } from "aws-amplify";
 import outputs from "../amplify_outputs.json";
@@ -9,13 +8,14 @@ import Contact from "./routes/Contact.tsx";
 import About from "./routes/About.tsx";
 import Dashboard from "./routes/Dashboard.tsx";
 import NotFound from "./routes/NotFound.tsx";
+import Home from "./routes/Home.tsx";
 
 Amplify.configure(outputs);
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
     errorElement: <NotFound />,
   },
   {
