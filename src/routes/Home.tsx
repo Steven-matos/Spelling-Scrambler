@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import logo from "../image/shiba_upscayl.png";
+import "@aws-amplify/ui-react/styles.css";
 
 function Home() {
   return (
