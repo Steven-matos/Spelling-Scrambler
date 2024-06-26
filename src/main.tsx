@@ -24,6 +24,7 @@ import "@aws-amplify/ui-react/styles.css";
 import MainPage from "./routes/Dashboard/MainPage";
 import LoginPage from "./routes/LoginPage";
 import MainPageContents from "./routes/Dashboard/MainPageContents";
+import Footer from "./components/Footer";
 
 Amplify.configure(outputs);
 
@@ -290,5 +291,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Authenticator.Provider>
       <RouterProvider router={router} />
     </Authenticator.Provider>
+    <Footer />
   </React.StrictMode>
 );

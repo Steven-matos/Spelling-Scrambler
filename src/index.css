@@ -28,3 +28,11 @@
   min-height: 100vh;
   background-color: #e5f8fa; /* Change to your desired color */
 }
+
+.login-nav {
+  background-color: #34dcfa;
+}
+
+.mobile-login-nav {
+  background-color: white;
+}

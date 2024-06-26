@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 const NotFound: React.FC = () => {
+  const { signOut } = useAuthenticator();
+
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-dffdff text-gray-900 p-6">
       <h1 className="text-6xl font-bold mb-4">404</h1>
@@ -9,6 +12,9 @@ const NotFound: React.FC = () => {
       <Link
         to="/"
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={() => {
+          signOut();
+        }}
       >
         Go Back Home
       </Link>
