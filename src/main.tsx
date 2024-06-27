@@ -25,6 +25,9 @@ import MainPage from "./routes/Dashboard/MainPage";
 import LoginPage from "./routes/LoginPage";
 import MainPageContents from "./routes/Dashboard/MainPageContents";
 import Footer from "./components/Footer";
+import Reports from "./routes/Dashboard/Reports";
+import Test from "./routes/Dashboard/Test";
+import Settings from "./routes/Dashboard/Settings";
 
 Amplify.configure(outputs);
 
@@ -282,15 +285,29 @@ const router = createBrowserRouter([
         path: ":id",
         element: <MainPageContents />,
       },
+      {
+        path: ":id/tests",
+        element: <Test />,
+      },
+      {
+        path: ":id/reports",
+        element: <Reports />,
+      },
+      {
+        path: ":id/settings",
+        element: <Settings />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Authenticator.Provider>
-      <RouterProvider router={router} />
-    </Authenticator.Provider>
+    <main>
+      <Authenticator.Provider>
+        <RouterProvider router={router} />
+      </Authenticator.Provider>
+    </main>
     <Footer />
   </React.StrictMode>
 );

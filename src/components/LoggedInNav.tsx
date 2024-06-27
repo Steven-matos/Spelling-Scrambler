@@ -16,7 +16,6 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
   const { id } = useParams();
 
   const navigation = [
-    { name: "Dashboard", path: `/dashboard/${id}` },
     { name: "Tests", path: `/dashboard/${id}/tests` },
     { name: "Reports", path: `/dashboard/${id}/reports` },
     { name: "Settings", path: `/dashboard/${id}/settings` },
@@ -37,6 +36,12 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
           />
         </NavLink>
         <div className="hidden lg:flex space-x-4">
+          <NavLink
+            to={`/dashboard/${id}`}
+            className="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          >
+            Dashboard
+          </NavLink>
           {navigation.map((item) => (
             <NavLink
               key={item.name}
