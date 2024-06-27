@@ -23,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
   ];
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50 bg-gray-800">
+    <header className="absolute inset-x-0 top-0 z-50 ThemeColor">
       <nav
         className="flex items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -36,7 +36,28 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
             alt="Shiba with floating letters"
           />
         </NavLink>
-        <div className="flex ">
+        <div className="hidden lg:flex space-x-4">
+          {navigation.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-white bg-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+                  : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              }
+            >
+              {item.name}
+            </NavLink>
+          ))}
+          <button
+            onClick={signOut}
+            className="text-white bg-red-500 hover:bg-red-600 rounded-md px-3 py-2 text-sm font-medium"
+          >
+            Sign out
+          </button>
+        </div>
+        <div className="flex lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
@@ -47,9 +68,13 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
           </button>
         </div>
       </nav>
-      <Dialog className="" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog
+        className="ThemeColor"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
         <div className="fixed inset-0 z-50" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto ThemeColorDarker px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <div>
               <span className="sr-only">Spelling Shiba Scrambler</span>
@@ -61,11 +86,11 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
             </div>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 rounded-md p-2.5 text-gray-400"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" />
             </button>
           </div>
           <div className="mt-6 flow-root">
@@ -75,7 +100,7 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
                   <NavLink
                     key={item.name}
                     to={item.path}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-200"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-200 hover:bg-gray-700"
                   >
                     {item.name}
                   </NavLink>

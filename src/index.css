@@ -29,6 +29,14 @@
   background-color: #e5f8fa; /* Change to your desired color */
 }
 
+.ThemeColor {
+  background: #49b6e9;
+}
+
+.ThemeColorDarker {
+  background: #14739f;
+}
+
 .login-nav {
   background-color: #34dcfa;
 }

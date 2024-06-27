@@ -6,7 +6,7 @@ const NotFound: React.FC = () => {
   const { signOut } = useAuthenticator();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-dffdff text-gray-900 p-6">
+    <div className="flex flex-col items-center justify-center h-screen ThemeColor text-white p-6">
       <h1 className="text-6xl font-bold mb-4">404</h1>
       <p className="text-2xl mb-8">Page Not Found</p>
       <Link
@@ -18,7 +18,7 @@ const NotFound: React.FC = () => {
       >
         Go Back Home
       </Link>
-      <p className="mt-4 text-gray-400">
+      <p className="mt-4 text-white">
         Or maybe you typed something wrong? Try again!
       </p>
     </div>
