@@ -10,7 +10,6 @@ import {
   Divider,
 } from "@aws-amplify/ui-react";
 import LoggedInNav from "../../components/LoggedInNav";
-import Footer from "../../components/Footer";
 
 const MainPageContents = () => {
   const { user } = useAuthenticator();
