@@ -1,6 +1,6 @@
 import { Divider } from "@aws-amplify/ui-react";
 
-const InfoSection = ({ items }) => {
+const InfoSection = ({ items = [] }) => {
   return (
     <div className="text-center text-xl py-6">
       <h1 className="text-4xl py-4">
