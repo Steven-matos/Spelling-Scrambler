@@ -1,6 +1,11 @@
+import React from "react";
 import { Divider } from "@aws-amplify/ui-react";
 
-const InfoSection = ({ items = [] }) => {
+interface InfoSectionProps {
+  items: Array<{ id: number; title: string; badges: string[] }>;
+}
+
+const InfoSection: React.FC<InfoSectionProps> = ({ items }) => {
   return (
     <div className="text-center text-xl py-6">
       <h1 className="text-4xl py-4">
