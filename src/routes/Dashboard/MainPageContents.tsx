@@ -1,5 +1,5 @@
+import { useState } from "react";
 import {
-  useAuthenticator,
   Collection,
   Card,
   View,
@@ -10,11 +10,10 @@ import {
   Divider,
 } from "@aws-amplify/ui-react";
 import LoggedInNav from "../../components/LoggedInNav";
+import InfoSection from "../../components/InfoSection";
 
 const MainPageContents = () => {
-  const { user } = useAuthenticator();
-
-  const items = [
+  const [items, setItems] = useState([
     {
       id: 1,
       title: "Week of 6/17/2024",
@@ -30,19 +29,18 @@ const MainPageContents = () => {
       title: "Week of 6/24/2024",
       badges: ["Mountain", "Verified"],
     },
-    {
-      id: 4,
-      title: "Week of 6/24/2024",
-      badges: ["Mountain", "Verified"],
-    },
-  ];
+  ]);
+
+  const handleDeleteItem = (id: number) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
 
   return (
     <div>
       <LoggedInNav />
       <div className="px-6 lg:px-8">
         <div className="mx-auto max-w-3xl py-20">
-          <h1>Hello {user?.signInDetails?.loginId}</h1>
+          <InfoSection items={items} />
           <Collection
             items={items}
             type="list"
@@ -77,9 +75,19 @@ const MainPageContents = () => {
                       </Badge>
                     ))}
                   </Flex>
-                  <Button variation="primary" isFullWidth>
-                    Retest
-                  </Button>
+                  <div className="flex flex-col">
+                    <Button variation="primary" margin="0.5rem">
+                      Retest
+                    </Button>
+                    <Button
+                      margin="0.5rem"
+                      onClick={() => handleDeleteItem(item.id)}
+                      backgroundColor="red.60"
+                      color="white"
+                    >
+                      Delete
+                    </Button>
+                  </div>
                 </View>
               </Card>
             )}
