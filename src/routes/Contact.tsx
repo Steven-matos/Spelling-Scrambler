@@ -21,6 +21,9 @@ export default function Contact() {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Contact us
           </h2>
+          <p className="mt-2 text-lg leading-8 text-gray-600">
+            If you have any questions or recommendations feel free to reach out.
+          </p>
         </div>
         <form
           action="#"
@@ -100,7 +103,7 @@ export default function Contact() {
           <div className="mt-10">
             <button
               type="submit"
-              className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="block w-full rounded-md ThemeColor px-3.5 py-2.5 text-center text-sm font-semibold text-white hover:text-black shadow-sm hover:bg-yellow-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Let's talk
             </button>
