@@ -1,10 +1,11 @@
 import Navbar from "../components/Navbar";
+import kids from "../image/kids_computer_upscayl_4x_ultrasharp.png";
 
 const About = () => {
   return (
     <div className="bg-dffdff">
       <Navbar />
-      <div className="relative isolate px-6 lg:px-8">
+      <div className="isolate px-6 lg:px-8">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
@@ -17,16 +18,32 @@ const About = () => {
             }}
           />
         </div>
-        <div className="mx-auto max-w-2xl py-20">
+        <div className="mx-auto max-w-2xl py-20 md:max-w-4xl">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               About us
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat aliqua.
-            </p>
+            <div className="flex justify-around py-6 flex-col-reverse md:flex-row">
+              <p className="my-5 mx-auto text-lg leading-8 text-gray-600 text-left">
+                Welcome to Spelling Shiba Scrambler, the ultimate tool for
+                making spelling practice fun and engaging for kids! Our mission
+                is to transform traditional spelling exercises into an exciting
+                adventure. With the help of our adorable Shiba Inu mascot,
+                children can practice their school spelling words by
+                unscrambling mixed-up letters. This interactive approach not
+                only enhances their spelling skills but also boosts their
+                confidence and enjoyment of learning. Spelling Shiba Scrambler
+                is designed to turn learning into a playful experience, ensuring
+                that your child looks forward to practicing their spelling words
+                every day. Join us in making education a delightful journey for
+                your little learners!
+              </p>
+              <img
+                className="h-96 w-96 rounded-3xl my-6 mx-auto md:mx-10"
+                src={kids}
+                alt="Kids having fun on a computer"
+              />
+            </div>
           </div>
         </div>
         <div
