@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className="bg-dffdff">
       <Navbar />
-      <div className="relative isolate px-6 lg:px-8">
+      <div className="isolate px-6 lg:px-8">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
@@ -27,13 +27,40 @@ function Home() {
               alt="Shiba with floating letters"
             />
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Spelling Shiba Scrambler
+              Welcome to Spelling Shiba Scrambler!
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat aliqua.
-            </p>
+            <div className="text-left">
+              <p className="mt-6 text-lg leading-8 text-gray-600 text-left">
+                Hey Parents! <br /> Are you looking for a fun and engaging way
+                for your kids to practice their school spelling words? Meet
+                Spelling Shiba Scrambler, the playful tool designed to make
+                learning exciting! Our adorable Shiba Inu mascot will guide your
+                child through interactive letter scrambles, turning spelling
+                practice into a delightful adventure.{" "}
+              </p>
+              <p>With Spelling Shiba Scrambler, your child can:</p>
+              <br />
+              <ul>
+                <li>
+                  <b>Unscramble Words:</b> Enhance their spelling skills by
+                  rearranging mixed-up letters.
+                </li>
+                <li>
+                  <b>Boost Confidence:</b> Watch their confidence soar as they
+                  master their school spelling lists.
+                </li>
+                <li>
+                  <b>Have Fun:</b> Enjoy the journey with our cute and friendly
+                  Shiba Inu companion.
+                </li>
+              </ul>
+              <br />
+              <p>
+                Join us in making spelling practice a joyful and rewarding
+                experience for your little learners. Let’s turn learning into
+                playtime with Spelling Shiba Scrambler!
+              </p>
+            </div>
           </div>
         </div>
         <div
