@@ -16,11 +16,6 @@
   --amplify-components-button-link-color: var(--amplify-colors-neutral-80);
 }
 
-.amplify-button--primary {
-  background: #8ee3ec;
-  color: black;
-}
-
 .auth-container {
   display: flex;
   justify-content: center;
@@ -30,7 +25,7 @@
 }
 
 .ThemeColor {
-  background: #49b6e9;
+  background: #49b6e9 !important;
 }
 
 .ThemeColorDarker {
@@ -49,4 +44,17 @@ main {
   min-height: 115vh;
   display: flex;
   flex-direction: column;
+}
+
+.ThemeColorBtn {
+  background: #49b6e9 !important;
+  color: white !important;
+}
+
+.ThemeColorBtn:hover {
+  background: #14739f !important;
+}
+
+.deleteBtn:hover {
+  background: #862d2d !important;
 }

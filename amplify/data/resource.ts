@@ -20,6 +20,17 @@ const schema = a
 
 export type Schema = ClientSchema<typeof schema>;
 
+export type Test = {
+  testId: string;
+  words: Word[];
+};
+
+export type Word = {
+  wordId: string;
+  word: string;
+  testId: string;
+};
+
 export const data = defineData({
   schema,
   authorizationModes: {
