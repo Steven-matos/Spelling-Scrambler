@@ -286,7 +286,7 @@ const router = createBrowserRouter([
         element: <MainPageContents />,
       },
       {
-        path: ":id/tests",
+        path: ":id/create-tests",
         element: <Test />,
       },
       {

@@ -7,7 +7,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (route === "authenticated") {
+    if (route === "authenticated" || user?.username !== undefined) {
       navigate(`/dashboard/${user?.username}`);
     }
   }, [route, navigate]);

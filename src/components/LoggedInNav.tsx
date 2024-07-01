@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
   const { id } = useParams();
 
   const navigation = [
-    { name: "Tests", path: `/dashboard/${id}/tests` },
+    { name: "Create Tests", path: `/dashboard/${id}/create-tests` },
     { name: "Reports", path: `/dashboard/${id}/reports` },
     { name: "Settings", path: `/dashboard/${id}/settings` },
   ];
