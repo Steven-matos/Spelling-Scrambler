@@ -22,6 +22,7 @@ export type Schema = ClientSchema<typeof schema>;
 
 export type Test = {
   testId: string;
+  weekof: string;
   words: Word[];
 };
 

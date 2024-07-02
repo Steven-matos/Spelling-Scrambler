@@ -24,7 +24,13 @@ const MainPageContents = () => {
     if (errors) {
       console.error(errors);
     }
-    return data || [];
+    return (
+      data?.map((word) => ({
+        wordId: word.wordId,
+        word: word.word,
+        testId: word.testId || "",
+      })) || []
+    );
   };
 
   const fetchTests = async () => {
@@ -65,7 +71,7 @@ const MainPageContents = () => {
         <div className="mx-auto max-w-3xl py-20">
           <InfoSection tests={tests} />
           <Collection
-            tests={tests}
+            items={tests}
             type="list"
             direction="row"
             gap="20px"
