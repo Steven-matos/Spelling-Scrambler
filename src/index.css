@@ -58,3 +58,13 @@ main {
 .deleteBtn:hover {
   background: #862d2d !important;
 }
+
+.amplify-button:hover {
+  cursor: pointer;
+  border-color: #14739f;
+  color: #14739f;
+}
+
+ol {
+  list-style: auto;
+}
