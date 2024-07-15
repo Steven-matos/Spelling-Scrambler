@@ -6,7 +6,7 @@ const schema = a
       .model({
         id: a.id(),
         weekof: a.string().required(),
-        words: a.hasMany("Words", "id"),
+        words: a.hasMany("Words", "testId"),
       })
       .identifier(["weekof"]),
     Words: a.model({
