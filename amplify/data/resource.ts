@@ -4,15 +4,15 @@ const schema = a
   .schema({
     Tests: a
       .model({
-        testId: a.id().required(),
+        id: a.id(),
         weekof: a.string().required(),
-        words: a.hasMany("Words", "testId"),
+        words: a.hasMany("Words", "id"),
       })
-      .identifier(["testId"]),
+      .identifier(["weekof"]),
     Words: a.model({
-      wordId: a.id().required(),
+      id: a.id(),
       word: a.string().required(),
-      testId: a.id(),
+      testId: a.id().required(),
       test: a.belongsTo("Tests", "testId"),
     }),
   })
@@ -21,15 +21,14 @@ const schema = a
 export type Schema = ClientSchema<typeof schema>;
 
 export type Test = {
-  testId: string;
+  id: Number;
   weekof: string;
   words: Word[];
 };
 
 export type Word = {
-  wordId: string;
   word: string;
-  testId: string;
+  testId: Number;
 };
 
 export const data = defineData({
