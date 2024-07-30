@@ -2,15 +2,11 @@ import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
 const schema = a
   .schema({
-    Tests: a
-      .model({
-        id: a.id(),
-        weekof: a.string().required(),
-        words: a.hasMany("Words", "testId"),
-      })
-      .identifier(["weekof"]),
+    Tests: a.model({
+      weekof: a.string().required(),
+      words: a.hasMany("Words", "testId"),
+    }),
     Words: a.model({
-      id: a.id(),
       word: a.string().required(),
       testId: a.id().required(),
       test: a.belongsTo("Tests", "testId"),
@@ -21,7 +17,6 @@ const schema = a
 export type Schema = ClientSchema<typeof schema>;
 
 export type Test = {
-  id: Number;
   weekof: string;
   words: Word[];
 };

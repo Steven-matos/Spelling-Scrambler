@@ -4,6 +4,23 @@ import { Toast, ToastType } from "./Toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
+import { generateClient } from "aws-amplify/data";
+import { type Schema } from "../../amplify/data/resource";
+
+const client = generateClient<Schema>();
+
+type TestType = {
+  id: string;
+  weekof: string;
+  words: WordType[];
+};
+
+type WordType = {
+  id: string;
+  word: string;
+  testId: string;
+};
+
 type StepContentProps = {
   onNext: () => void;
   onPrevious?: () => void;
@@ -51,7 +68,10 @@ const Step2: React.FC<StepContentProps> = ({
 
   const handleAddWord = () => {
     if (inputWord.trim() !== "") {
-      setWordList((prevWordList) => [...prevWordList, inputWord.trim()]);
+      setWordList((prevWordList) => [
+        ...prevWordList,
+        inputWord.trim().toLowerCase(),
+      ]);
       setInputWord("");
     } else {
       showToast("warning", "Must type in a word to add.");
@@ -172,14 +192,66 @@ const CreateTestForm: React.FC = () => {
 
   const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const dataSet = {
       date: date,
       wordList: wordList,
     };
     console.log("Checking all data: ", dataSet);
 
+    createTest(dataSet);
+
     showToast("success", "Test Created.");
+  };
+
+  const createTest = async (dataSet: { date: string; wordList: string[] }) => {
+    const { date, wordList } = dataSet;
+
+    try {
+      const response = await client.models.Tests.create({
+        weekof: date,
+      });
+
+      if (response.errors) {
+        showToast("error", "Failed to Generate Test");
+        return;
+      }
+
+      const Test = response.data; // Type assertion here
+
+      if (!Test || !Test.id) {
+        showToast("error", "Failed to Generate Test");
+        return;
+      }
+
+      for (const word of wordList) {
+        try {
+          await addWordsToBackend({ word, testId: Test.id });
+        } catch (error) {
+          await client.models.Tests.delete({
+            id: Test.id,
+          });
+          showToast("error", "Failed to Generate Test");
+          return;
+        }
+      }
+
+      showToast("success", "Test Generated Successfully");
+    } catch (error) {
+      showToast("error", "Failed to Generate Test");
+    }
+  };
+
+  const addWordsToBackend = async (data: { word: string; testId: string }) => {
+    const { word, testId } = data;
+    const response = await client.models.Words.create({
+      testId: testId,
+      word: word,
+    });
+
+    if (response.errors) {
+      throw new Error("Failed to add word to backend");
+    }
   };
 
   const renderStepContent = () => {
