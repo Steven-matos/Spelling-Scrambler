@@ -9,18 +9,6 @@ import { type Schema } from "../../amplify/data/resource";
 
 const client = generateClient<Schema>();
 
-type TestType = {
-  id: string;
-  weekof: string;
-  words: WordType[];
-};
-
-type WordType = {
-  id: string;
-  word: string;
-  testId: string;
-};
-
 type StepContentProps = {
   onNext: () => void;
   onPrevious?: () => void;
@@ -208,16 +196,14 @@ const CreateTestForm: React.FC = () => {
     const { date, wordList } = dataSet;
 
     try {
-      const response = await client.models.Tests.create({
+      const { errors, data: Test } = await client.models.Tests.create({
         weekof: date,
       });
 
-      if (response.errors) {
+      if (errors) {
         showToast("error", "Failed to Generate Test");
         return;
       }
-
-      const Test = response.data; // Type assertion here
 
       if (!Test || !Test.id) {
         showToast("error", "Failed to Generate Test");
