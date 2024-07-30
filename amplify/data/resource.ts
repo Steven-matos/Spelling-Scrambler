@@ -17,13 +17,15 @@ const schema = a
 export type Schema = ClientSchema<typeof schema>;
 
 export type Test = {
+  id: string;
   weekof: string;
   words: Word[];
 };
 
 export type Word = {
+  id: string;
   word: string;
-  testId: Number;
+  testId: string;
 };
 
 export const data = defineData({

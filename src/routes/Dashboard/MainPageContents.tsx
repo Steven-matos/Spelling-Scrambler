@@ -26,7 +26,7 @@ const MainPageContents = () => {
     }
     return (
       data?.map((word) => ({
-        wordId: word.wordId,
+        id: word.id,
         word: word.word,
         testId: word.testId || "",
       })) || []
@@ -38,7 +38,7 @@ const MainPageContents = () => {
     if (data) {
       const testsWithWords = await Promise.all(
         data.map(async (test) => {
-          const words = await fetchWords(test.testId);
+          const words = await fetchWords(test.id);
           return { ...test, words };
         })
       );
@@ -55,10 +55,10 @@ const MainPageContents = () => {
 
   const handleDeleteItem = async (testId: string) => {
     try {
-      await client.models.Tests.delete({ testId: testId });
-      setTests((prevTests) =>
-        prevTests.filter((test) => test.testId !== testId)
-      );
+      await client.models.Tests.delete({
+        id: testId,
+      });
+      setTests((prevTests) => prevTests.filter((test) => test.id !== testId));
     } catch (error) {
       console.error("Failed to delete test:", error);
     }
@@ -80,7 +80,7 @@ const MainPageContents = () => {
           >
             {(test) => (
               <Card
-                key={test?.testId}
+                key={test?.id}
                 borderRadius="medium"
                 maxWidth="20rem"
                 variation="outlined"
@@ -94,7 +94,7 @@ const MainPageContents = () => {
                     </Button>
                     <Button
                       margin="0.5rem"
-                      onClick={() => handleDeleteItem(test?.testId)}
+                      onClick={() => handleDeleteItem(test?.id)}
                       backgroundColor="red.60"
                       color="white"
                       className="deleteBtn"
