@@ -1,21 +1,16 @@
-import { useState, useEffect } from "react";
-import {
-  Collection,
-  Card,
-  View,
-  Button,
-  Heading,
-  Divider,
-} from "@aws-amplify/ui-react";
+import { useState, useEffect, useRef } from "react";
+import { Collection } from "@aws-amplify/ui-react";
 import LoggedInNav from "../../components/LoggedInNav";
 import InfoSection from "../../components/InfoSection";
-import type { Schema, Test, Word } from "../../../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
+import TestCard from "../../components/TestCard";
+import type { Schema, Test, Word } from "../../../amplify/data/resource";
 
 const client = generateClient<Schema>();
 
 const MainPageContents = () => {
   const [tests, setTests] = useState<Test[]>([]);
+  const testsCache = useRef<Test[] | null>(null);
 
   const fetchWords = async (testId: string): Promise<Word[]> => {
     const { data, errors } = await client.models.Words.list({
@@ -42,6 +37,7 @@ const MainPageContents = () => {
           return { ...test, words };
         })
       );
+      testsCache.current = testsWithWords;
       setTests(testsWithWords);
     }
     if (errors) {
@@ -50,15 +46,22 @@ const MainPageContents = () => {
   };
 
   useEffect(() => {
-    fetchTests();
+    if (testsCache.current) {
+      setTests(testsCache.current);
+    } else {
+      fetchTests();
+    }
   }, []);
 
   const handleDeleteItem = async (testId: string) => {
     try {
-      await client.models.Tests.delete({
-        id: testId,
-      });
+      await client.models.Tests.delete({ id: testId });
       setTests((prevTests) => prevTests.filter((test) => test.id !== testId));
+      if (testsCache.current) {
+        testsCache.current = testsCache.current.filter(
+          (test) => test.id !== testId
+        );
+      }
     } catch (error) {
       console.error("Failed to delete test:", error);
     }
@@ -79,31 +82,11 @@ const MainPageContents = () => {
             justifyContent="center"
           >
             {(test) => (
-              <Card
+              <TestCard
                 key={test?.id}
-                borderRadius="medium"
-                maxWidth="20rem"
-                variation="outlined"
-              >
-                <View padding="xs">
-                  <Heading padding="medium">{test?.weekof}</Heading>
-                  <Divider marginBottom="medium" />
-                  <div className="flex flex-col">
-                    <Button className="ThemeColorBtn" margin="0.5rem">
-                      Retest
-                    </Button>
-                    <Button
-                      margin="0.5rem"
-                      onClick={() => handleDeleteItem(test?.id)}
-                      backgroundColor="red.60"
-                      color="white"
-                      className="deleteBtn"
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </View>
-              </Card>
+                test={test}
+                onDelete={handleDeleteItem}
+              />
             )}
           </Collection>
         </div>
