@@ -16,7 +16,7 @@ const TestCard: React.FC<TestCardProps> = ({ test, onDelete }) => {
         <Divider marginBottom="medium" />
         <div className="flex flex-col">
           <Button className="ThemeColorBtn" margin="0.5rem">
-            Retest
+            Test
           </Button>
           <Button
             margin="0.5rem"
