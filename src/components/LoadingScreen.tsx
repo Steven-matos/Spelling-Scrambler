@@ -10,10 +10,10 @@ const LoadingScreen: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setScrambledText((prev) =>
+      setScrambledText(() =>
         originalText
           .split("")
-          .map((char, i) => {
+          .map((_char, i) => {
             if (i < iteration) {
               return originalText[i];
             }
