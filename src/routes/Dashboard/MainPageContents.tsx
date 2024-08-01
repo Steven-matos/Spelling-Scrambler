@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Collection } from "@aws-amplify/ui-react";
 import LoggedInNav from "../../components/LoggedInNav";
 import InfoSection from "../../components/InfoSection";
-import { generateClient } from "aws-amplify/data";
 import TestCard from "../../components/TestCard";
+
+import { generateClient } from "aws-amplify/data";
 import type { Schema, Test, Word } from "../../../amplify/data/resource";
 
 const client = generateClient<Schema>();
@@ -13,35 +14,45 @@ const MainPageContents = () => {
   const testsCache = useRef<Test[] | null>(null);
 
   const fetchWords = async (testId: string): Promise<Word[]> => {
-    const { data, errors } = await client.models.Words.list({
-      filter: { testId: { eq: testId } },
-    });
-    if (errors) {
-      console.error(errors);
+    try {
+      const { data, errors } = await client.models.Words.list({
+        filter: { testId: { eq: testId } },
+      });
+      if (errors) {
+        console.error("Errors fetching words:", errors);
+        return [];
+      }
+      return (
+        data?.map((word) => ({
+          id: word.id,
+          word: word.word,
+          testId: word.testId || "",
+        })) || []
+      );
+    } catch (error) {
+      console.error("Error fetching words:", error);
+      return [];
     }
-    return (
-      data?.map((word) => ({
-        id: word.id,
-        word: word.word,
-        testId: word.testId || "",
-      })) || []
-    );
   };
 
   const fetchTests = async () => {
-    const { data, errors } = await client.models.Tests.list();
-    if (data) {
-      const testsWithWords = await Promise.all(
-        data.map(async (test) => {
-          const words = await fetchWords(test.id);
-          return { ...test, words };
-        })
-      );
-      testsCache.current = testsWithWords;
-      setTests(testsWithWords);
-    }
-    if (errors) {
-      console.error(errors);
+    try {
+      const { data, errors } = await client.models.Tests.list();
+      if (errors) {
+        console.error("Errors fetching tests:", errors);
+      }
+      if (data) {
+        const testsWithWords = await Promise.all(
+          data.map(async (test) => {
+            const words = await fetchWords(test.id);
+            return { ...test, words };
+          })
+        );
+        testsCache.current = testsWithWords;
+        setTests(testsWithWords);
+      }
+    } catch (error) {
+      console.error("Error fetching tests:", error);
     }
   };
 

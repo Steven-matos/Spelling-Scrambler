@@ -68,3 +68,7 @@ main {
 ol {
   list-style: auto;
 }
+
+.textCenter {
+  text-align: center !important;
+}

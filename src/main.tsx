@@ -26,8 +26,9 @@ import LoginPage from "./routes/LoginPage";
 import MainPageContents from "./routes/Dashboard/MainPageContents";
 import Footer from "./components/Footer";
 import Reports from "./routes/Dashboard/Reports";
-import Test from "./routes/Dashboard/Test";
+import CreateTest from "./routes/Dashboard/Test";
 import Settings from "./routes/Dashboard/Settings";
+import Test from "./routes/Test/Test";
 
 Amplify.configure(outputs);
 
@@ -287,7 +288,7 @@ const router = createBrowserRouter([
       },
       {
         path: ":id/create-tests",
-        element: <Test />,
+        element: <CreateTest />,
       },
       {
         path: ":id/reports",
@@ -296,6 +297,10 @@ const router = createBrowserRouter([
       {
         path: ":id/settings",
         element: <Settings />,
+      },
+      {
+        path: ":id/test/:testId",
+        element: <Test />,
       },
     ],
   },
