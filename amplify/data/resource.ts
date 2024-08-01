@@ -5,6 +5,8 @@ const schema = a
     Tests: a.model({
       weekof: a.string().required(),
       words: a.hasMany("Words", "testId"),
+      taken: a.integer().required(),
+      correct: a.integer().required(),
     }),
     Words: a.model({
       word: a.string().required(),
@@ -19,6 +21,8 @@ export type Schema = ClientSchema<typeof schema>;
 export type Test = {
   id: string;
   weekof: string;
+  taken: number;
+  correct: number;
   words: Word[];
 };
 
