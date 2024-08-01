@@ -55,6 +55,8 @@ const CreateTestForm: React.FC = () => {
     try {
       const { errors, data: Test } = await client.models.Tests.create({
         weekof: date,
+        taken: 0,
+        correct: 0,
       });
 
       if (errors || !Test || !Test.id) {
