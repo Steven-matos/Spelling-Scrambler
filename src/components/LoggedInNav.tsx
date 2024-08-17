@@ -41,6 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ onLogin }) => {
             <NavLink
               key={item.name}
               to={item.path}
+              end={item.name === "Dashboard"}
               className={({ isActive }) =>
                 isActive
                   ? "text-white bg-gray-900 px-3 py-2 rounded-md text-sm font-medium"
