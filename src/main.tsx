@@ -28,6 +28,7 @@ import Footer from "./components/Footer";
 import Reports from "./routes/Dashboard/Reports";
 import CreateTest from "./routes/Dashboard/Test";
 import Settings from "./routes/Dashboard/Settings";
+import ChangePassword from "./components/ChangePassword";
 import Test from "./routes/Test/Test";
 
 Amplify.configure(outputs);
@@ -291,6 +292,10 @@ const router = createBrowserRouter([
         element: <CreateTest />,
       },
       {
+        path: ":id/test/:testId",
+        element: <Test />,
+      },
+      {
         path: ":id/reports",
         element: <Reports />,
       },
@@ -299,8 +304,8 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
       {
-        path: ":id/test/:testId",
-        element: <Test />,
+        path: ":id/settings/change-password",
+        element: <ChangePassword />,
       },
     ],
   },
