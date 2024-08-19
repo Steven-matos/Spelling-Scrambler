@@ -73,9 +73,24 @@ ol {
   text-align: center !important;
 }
 
+.heading-cust {
+  padding: 5px;
+  text-decoration: underline !important;
+}
+
+.input-box {
+  border: solid black 2px;
+  border-radius: 6px;
+}
+
+.input-box:focus {
+  border: solid #49b6e9 2px;
+  border-radius: 6px;
+}
+
 .change-password-container {
+  margin: 6rem auto;
   max-width: 400px;
-  margin: auto;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;

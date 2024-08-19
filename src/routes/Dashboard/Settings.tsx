@@ -16,7 +16,7 @@ const Settings: React.FC = () => {
           <div className="mt-8">
             <NavLink
               to={`/dashboard/${id}/settings/change-password`}
-              className="text-blue-500 hover:underline"
+              className="hover:underline"
             >
               Change Password
             </NavLink>
